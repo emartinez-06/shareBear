@@ -4,3 +4,5 @@ sqlparse==0.5.5
 whitenoise==6.9.0
 psycopg2-binary==2.9.10
 dj-database-url==2.3.0
+django-storages>=1.14.4
+boto3>=1.36.0
