@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'waitlist',
-    'users',
 ]
 
 MIDDLEWARE = [
@@ -82,9 +81,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'shareBear.wsgi.application'
-
-# Custom User Model
-AUTH_USER_MODEL = 'users.User'
 
 
 # Database

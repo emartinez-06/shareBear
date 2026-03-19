@@ -1,6 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>Success!</p>
-    <a href="{% url 'users:register' %}"><button type="button">Register Now</button></a>
+    <h2>Join the Waitlist!</h2>
+    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if entry %}
+        <p>Congratulations! You are on the waitlist.</p>
+        <p>Your unique referral code is: <strong>{{ entry.referral_code }}</strong></p>
+        <p>Share this link to move up: <code>{{ request.scheme }}://{{ request.get_host }}/?ref={{ entry.referral_code }}</code></p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Join Waitlist</button>
+        </form>
+    {% endif %}
 {% endblock %}
