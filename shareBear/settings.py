@@ -90,9 +90,16 @@ WSGI_APPLICATION = 'shareBear.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+DATABASE_URL = os.getenv('DATABASE_URL')
+if not DATABASE_URL:
+    raise ValueError(
+        'DATABASE_URL environment variable must be set. '
+        'Check your .env file or environment variables.'
+    )
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        default=DATABASE_URL,
         conn_max_age=600,
         ssl_require=not DEBUG
     )
