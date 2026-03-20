@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}shareBear{% endblock %}</title>
+    {% block head %}{% endblock %}
     <!-- Vercel Web Analytics -->
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -17,11 +18,9 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to shareBear</h1>
-    </header>
     <main>
         {% block content %}{% endblock %}
     </main>
+    {% block scripts %}{% endblock %}
 </body>
 </html>

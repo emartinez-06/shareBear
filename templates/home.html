@@ -1,5 +1,595 @@
 {% extends 'base.html' %}
 
+{% block title %}shareBear | Marketplace Launch{% endblock %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg-0: #f7f4ea;
+        --bg-1: #eef6f1;
+        --surface: #ffffff;
+        --surface-2: #f6fbf8;
+        --line: rgba(21, 71, 52, 0.16);
+        --line-strong: rgba(255, 184, 28, 0.5);
+        --text: #123628;
+        --text-soft: #47685c;
+        --baylor-green: #154734;
+        --baylor-yellow: #ffb81c;
+        --brand-gradient: linear-gradient(90deg, #154734, #2a6b4f 62%, #ffb81c);
+        --shadow: 0 18px 36px rgba(18, 50, 37, 0.12);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        margin: 0;
+        min-height: 100%;
+    }
+
+    body {
+        color: var(--text);
+        background:
+            radial-gradient(circle at 100% 0%, rgba(255, 184, 28, 0.2), transparent 34%),
+            radial-gradient(circle at 0% 100%, rgba(21, 71, 52, 0.08), transparent 38%),
+            linear-gradient(180deg, var(--bg-0), var(--bg-1));
+        font-family: 'Archivo', 'Segoe UI', sans-serif;
+        overflow-x: hidden;
+    }
+
+    main {
+        position: relative;
+        padding: clamp(1.7rem, 4vw, 3.2rem) 1.15rem 2.4rem;
+    }
+
+    .ambient {
+        position: fixed;
+        inset: -10%;
+        pointer-events: none;
+        z-index: -1;
+        background:
+            radial-gradient(28% 22% at 15% 20%, rgba(255, 184, 28, 0.2), transparent 70%),
+            radial-gradient(32% 26% at 82% 74%, rgba(21, 71, 52, 0.18), transparent 72%);
+        animation: ambientDrift 14s ease-in-out infinite alternate;
+    }
+
+    .hue-background {
+        position: fixed;
+        inset: -14%;
+        pointer-events: none;
+        z-index: -2;
+        opacity: 0.35;
+        background:
+            conic-gradient(from 200deg at 55% 40%, rgba(21, 71, 52, 0.28), rgba(255, 184, 28, 0.24), rgba(21, 71, 52, 0.28)),
+            radial-gradient(36% 30% at 20% 70%, rgba(255, 184, 28, 0.2), transparent 72%);
+        filter: blur(18px);
+        animation: huePulse 18s ease-in-out infinite alternate;
+    }
+
+    .hero-section {
+        width: min(980px, 100%);
+        margin: 0 auto;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero {
+        display: grid;
+        gap: 1.2rem;
+        width: 100%;
+    }
+
+    .hero::before {
+        content: '';
+        width: min(220px, 42vw);
+        height: 4px;
+        border-radius: 999px;
+        background: var(--brand-gradient);
+    }
+
+    .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        border-radius: 100px;
+        border: 1px solid var(--line-strong);
+        color: #8a6200;
+        background: rgba(255, 184, 28, 0.14);
+        padding: 0.3rem 0.78rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        text-transform: uppercase;
+        width: fit-content;
+    }
+
+    .status-pill::before {
+        content: '';
+        width: 0.48rem;
+        height: 0.48rem;
+        border-radius: 50%;
+        background: var(--baylor-yellow);
+        box-shadow: 0 0 0 4px rgba(255, 184, 28, 0.14);
+    }
+
+    h1 {
+        font-family: 'Archivo', 'Segoe UI', sans-serif;
+        font-size: clamp(2rem, 5.1vw, 3.8rem);
+        line-height: 0.98;
+        margin: 0;
+        max-width: 14ch;
+        letter-spacing: -0.025em;
+        color: #143e2d;
+        text-wrap: balance;
+    }
+
+    .hero-title,
+    .hero-subtitle {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    body.loaded .hero-title {
+        animation: heroLoadIn 920ms cubic-bezier(0.22, 1, 0.36, 1) 130ms forwards;
+    }
+
+    body.loaded .hero-subtitle {
+        animation: heroLoadIn 920ms cubic-bezier(0.22, 1, 0.36, 1) 340ms forwards;
+    }
+
+    .lede {
+        margin: 0;
+        max-width: 60ch;
+        color: var(--text-soft);
+        line-height: 1.62;
+        font-size: clamp(0.96rem, 1.8vw, 1.05rem);
+    }
+
+    .process-rotator {
+        margin-top: 0.2rem;
+        position: relative;
+        min-height: 260px;
+        perspective: 1100px;
+    }
+
+    .process-rotator:not(.cards-in) .process-card {
+        opacity: 0 !important;
+        transform: translateY(28px) scale(0.94) !important;
+    }
+
+    .process-card {
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: #fbfefc;
+        padding: 1.2rem 1.15rem;
+        border-left: 4px solid var(--baylor-green);
+        transition: transform 760ms cubic-bezier(0.22, 1, 0.36, 1), opacity 620ms ease;
+        transform-origin: center;
+        opacity: 0;
+        pointer-events: none;
+        box-shadow: 0 12px 22px rgba(18, 50, 37, 0.08);
+    }
+
+    .process-card.active {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotateY(0deg);
+        pointer-events: auto;
+        z-index: 3;
+        border-left-color: var(--baylor-yellow);
+    }
+
+    .process-card.next {
+        opacity: 0.45;
+        transform: translateX(14%) translateY(14px) scale(0.94) rotateY(-8deg);
+        z-index: 2;
+    }
+
+    .process-card.prev {
+        opacity: 0.3;
+        transform: translateX(-14%) translateY(14px) scale(0.94) rotateY(8deg);
+        z-index: 1;
+    }
+
+    .step-kicker {
+        margin: 0 0 0.62rem;
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #8a6200;
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 500;
+    }
+
+    .process-card h3 {
+        margin: 0;
+        font-size: clamp(1.05rem, 2.2vw, 1.42rem);
+        color: var(--text);
+        letter-spacing: -0.01em;
+    }
+
+    .process-card p {
+        margin: 0.55rem 0 0;
+        max-width: 58ch;
+        margin: 0;
+        line-height: 1.58;
+        color: var(--text-soft);
+        font-size: 0.96rem;
+    }
+
+    .progress-dots {
+        margin-top: 0.35rem;
+        display: flex;
+        gap: 0.44rem;
+        align-items: center;
+    }
+
+    .progress-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(21, 71, 52, 0.24);
+        transition: transform 220ms ease, background-color 220ms ease;
+    }
+
+    .progress-dot.active {
+        background: var(--baylor-yellow);
+        transform: scale(1.2);
+    }
+
+    .intake {
+        width: min(980px, 100%);
+        margin: 0.9rem auto 0;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.9rem;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: linear-gradient(180deg, #f8fcf9, #f0f7f2);
+        border-top: 3px solid var(--baylor-green);
+        padding: 1rem;
+        transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .intake:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(18, 50, 37, 0.1);
+    }
+
+    .intake h2 {
+        font-family: 'Archivo', 'Segoe UI', sans-serif;
+        margin: 0;
+        font-size: clamp(1.25rem, 2.8vw, 1.6rem);
+        color: var(--text);
+        letter-spacing: -0.02em;
+    }
+
+    .intake p {
+        margin: 0.25rem 0 0;
+        color: var(--text-soft);
+        font-size: 0.95rem;
+    }
+
+    .coming-soon {
+        border: 1px solid rgba(21, 71, 52, 0.3);
+        color: var(--baylor-green);
+        border-radius: 8px;
+        padding: 0.42rem 0.62rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        background: #ffffff;
+        font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        filter: blur(2px);
+    }
+
+    .reveal.in-view {
+        animation: reveal 780ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .delay-1 { animation-delay: 90ms; }
+    .delay-2 { animation-delay: 170ms; }
+    .delay-3 { animation-delay: 250ms; }
+    .delay-4 { animation-delay: 330ms; }
+
+    @keyframes reveal {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+            filter: blur(2px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes heroLoadIn {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes ambientDrift {
+        0% {
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+        100% {
+            transform: translate3d(1.2%, -1.4%, 0) scale(1.04);
+        }
+    }
+
+    @keyframes huePulse {
+        0% {
+            transform: scale(1) translate3d(0, 0, 0);
+            filter: blur(18px) hue-rotate(0deg);
+        }
+        100% {
+            transform: scale(1.06) translate3d(1.5%, -1%, 0);
+            filter: blur(20px) hue-rotate(24deg);
+        }
+    }
+
+    @keyframes sweep {
+        0%,
+        72% {
+            left: -42%;
+            opacity: 0;
+        }
+        78% {
+            opacity: 1;
+        }
+        100% {
+            left: 130%;
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 840px) {
+        main {
+            padding-top: 1.2rem;
+        }
+
+        .hero-section {
+            min-height: 100svh;
+        }
+
+        .process-rotator {
+            min-height: 295px;
+        }
+
+        .process-card {
+            padding: 1rem 0.9rem;
+        }
+
+        .process-card.next,
+        .process-card.prev {
+            transform: translateY(12px) scale(0.97);
+        }
+
+        .intake {
+            grid-template-columns: 1fr;
+            padding: 0.9rem;
+        }
+
+        .coming-soon {
+            justify-self: start;
+        }
+    }
+
+    @media (hover: none) {
+        .intake:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-title,
+        .hero-subtitle {
+            opacity: 1;
+            transform: none;
+            animation: none;
+        }
+
+        .reveal {
+            opacity: 1;
+            transform: none;
+            filter: none;
+            animation: none;
+        }
+
+        .ambient,
+        .hue-background,
+        .process-card {
+            animation: none;
+        }
+
+        .process-card,
+        .intake {
+            transition: none;
+        }
+
+        .process-rotator .process-card {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .process-card {
+            opacity: 1;
+            position: static;
+            transform: none;
+            margin-top: 0.75rem;
+        }
+
+        .process-rotator {
+            min-height: auto;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-    <p>Success!</p>
+<div class="hue-background" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true"></div>
+
+<section class="hero-section reveal">
+    <div class="hero">
+        <!-- <span class="status-pill">Built in Baylor Colors</span> -->
+        <h1 class="hero-title">Baylor S.H.A.R.E.</h1>
+        <p class="lede hero-subtitle">
+            A modern marketplace flow for founders and backers: publish real traction, get matched by intent, and move into high-signal conversations quickly.
+        </p>
+
+        <div class="process-rotator reveal delay-3" aria-label="Marketplace process steps">
+            <article class="process-card active" data-step="0">
+                <p class="step-kicker">Step 01</p>
+                <h3>Share your traction story</h3>
+                <p>
+                    Founders publish milestones, customer pull, and demand signals in one profile designed for fast evaluation.
+                </p>
+            </article>
+
+            <article class="process-card next" data-step="1">
+                <p class="step-kicker">Step 02</p>
+                <h3>Get discovered by aligned backers</h3>
+                <p>
+                    Matching prioritizes fit and momentum so investors and operators see relevant startups before they become crowded.
+                </p>
+            </article>
+
+            <article class="process-card prev" data-step="2">
+                <p class="step-kicker">Step 03</p>
+                <h3>Start focused conversations</h3>
+                <p>
+                    Qualified intros move into direct conversations, helping both sides act quickly with stronger context.
+                </p>
+            </article>
+        </div>
+
+        <div class="progress-dots" aria-hidden="true">
+            <span class="progress-dot active" data-dot="0"></span>
+            <span class="progress-dot" data-dot="1"></span>
+            <span class="progress-dot" data-dot="2"></span>
+        </div>
+    </div>
+</section>
+
+<section class="intake reveal delay-4" aria-label="Intake form coming soon">
+    <div>
+        <h2>Intake Form</h2>
+        <p>
+            Onboarding is in progress. This section will soon capture founder and partner interest with a concise intake form.
+        </p>
+    </div>
+    <span class="coming-soon">Coming Soon</span>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (function () {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.body.classList.add('loaded');
+            });
+        });
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const revealElements = document.querySelectorAll('.reveal');
+
+        if (reduceMotion) {
+            revealElements.forEach((el) => el.classList.add('in-view'));
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries, obs) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    entry.target.classList.add('in-view');
+                    obs.unobserve(entry.target);
+                });
+            },
+            { threshold: 0.18 }
+        );
+
+        revealElements.forEach((el) => observer.observe(el));
+
+        const cards = Array.from(document.querySelectorAll('.process-card'));
+        const dots = Array.from(document.querySelectorAll('.progress-dot'));
+        if (!cards.length) {
+            return;
+        }
+
+        let activeIndex = 0;
+        const setActiveCard = () => {
+            cards.forEach((card, idx) => {
+                card.classList.remove('active', 'next', 'prev');
+                if (idx === activeIndex) {
+                    card.classList.add('active');
+                    return;
+                }
+                if (idx === (activeIndex + 1) % cards.length) {
+                    card.classList.add('next');
+                    return;
+                }
+                if (idx === (activeIndex - 1 + cards.length) % cards.length) {
+                    card.classList.add('prev');
+                }
+            });
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === activeIndex);
+            });
+        };
+
+        setActiveCard();
+
+        const rotator = document.querySelector('.process-rotator');
+        if (rotator) {
+            cards.forEach((card, idx) => {
+                card.style.transitionDelay = `${180 + idx * 200}ms`;
+            });
+
+            requestAnimationFrame(() => {
+                rotator.classList.add('cards-in');
+            });
+
+            window.setTimeout(() => {
+                cards.forEach((card) => {
+                    card.style.transitionDelay = '0ms';
+                });
+            }, 1800);
+        }
+
+        window.setInterval(() => {
+            activeIndex = (activeIndex + 1) % cards.length;
+            setActiveCard();
+        }, 4800);
+    })();
+</script>
 {% endblock %}
