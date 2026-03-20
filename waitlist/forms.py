@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 class WaitlistEntryForm(forms.ModelForm):
     class Meta:
         model = WaitlistEntry
-        fields = ('email', 'intent', 'year')
+        fields = ('email', 'first_name', 'last_name', 'intent', 'year')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

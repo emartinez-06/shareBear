@@ -17,6 +17,8 @@ class WaitlistEntry(models.Model):
     ]
 
     email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=100, blank=True, null=True)
+    last_name = models.CharField(max_length=100, blank=True, null=True)
     intent = models.CharField(
         max_length=10, 
         choices=INTENT_CHOICES, 
