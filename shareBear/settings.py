@@ -13,9 +13,13 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load .env file
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -89,15 +93,15 @@ WSGI_APPLICATION = 'shareBear.wsgi.application'
 DATABASE_URL = os.getenv('DATABASE_URL')
 if not DATABASE_URL:
     raise ValueError(
-        "DATABASE_URL environment variable must be set. "
-        "Find this in your Supabase Project Settings > Database > Transaction Connection string."
+        'DATABASE_URL environment variable must be set. '
+        'Check your .env file or environment variables.'
     )
 
 DATABASES = {
     'default': dj_database_url.config(
         default=DATABASE_URL,
         conn_max_age=600,
-        conn_health_checks=True,
+        ssl_require=not DEBUG
     )
 }
 
@@ -138,6 +142,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Media files (Local storage)
 MEDIA_URL = '/media/'
