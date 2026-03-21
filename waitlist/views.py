@@ -13,3 +13,12 @@ def home(request):
         form = WaitlistEntryForm()
 
     return render(request, 'home.html', {'form': form})
+
+def process(request):
+    return render(request, 'process.html')
+
+def privacy(request):
+    return render(request, 'privacy.html')
+
+def terms(request):
+    return render(request, 'terms.html')
