@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}How It Works | Baylor S.H.A.R.E.{% endblock %}
+
+{% block content %}
+    <section class="pt-24 pb-16 px-8 md:px-16 max-w-7xl mx-auto text-center">
+        <div class="inline-block bg-secondary-container text-on-secondary-container font-display font-bold text-[0.65rem] tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-8">
+            The Process
+        </div>
+        <h1 class="font-display text-5xl md:text-6xl text-primary font-bold mb-6 tracking-tightest">
+            How Baylor S.H.A.R.E.<br>Works
+        </h1>
+        <p class="font-body text-lg text-on-surface-variant max-w-2xl mx-auto">
+            Giving your pre-loved campus essentials a second life shouldn't be a hassle. We've streamlined the experience from quote to payment.
+        </p>
+    </section>
+
+    <section class="pb-24 px-8 md:px-16 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            
+            <!-- Step 01 -->
+            <div class="lg:col-span-2 bg-surface-container rounded-[1.5rem] p-10 min-h-[320px] flex flex-col relative overflow-hidden group">
+                <div class="flex justify-between items-start mb-auto relative z-10">
+                    <span class="font-display text-7xl font-bold text-surface-container-highest opacity-50">01</span>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-on-secondary-container bg-secondary-container rounded-full p-1"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="font-display text-2xl font-bold text-on-surface mb-3">Get your quote</h3>
+                    <p class="font-body text-on-surface-variant text-sm leading-relaxed mb-6">Complete a free AI assessment to get an accurate quote on what we can give you for your item.</p>
+                    
+                    <!-- Faux UI Element -->
+                    <div class="bg-surface-container-high rounded-lg p-3 flex items-center gap-4">
+                        <div class="flex-1 h-2 bg-outline-variant/30 rounded-full overflow-hidden">
+                            <div class="w-2/3 h-full bg-secondary-container"></div>
+                        </div>
+                        <span class="font-display font-bold text-xs">$124.50</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="lg:col-span-3 bg-surface-container rounded-[1.5rem] p-10 min-h-[320px] flex flex-col">
+                <div class="flex justify-between items-start mb-auto">
+                    <span class="font-display text-7xl font-bold text-surface-container-highest opacity-50">02</span>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                </div>
+                <div>
+                    <h3 class="font-display text-2xl font-bold text-on-surface mb-3">Upload your video</h3>
+                    <p class="font-body text-on-surface-variant text-sm leading-relaxed max-w-sm">If you're happy with the price, take a video of your item and upload it to the website so an administrator can approve and review your product.</p>
+                </div>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="lg:col-span-2 bg-surface-container rounded-[1.5rem] p-10 min-h-[320px] flex flex-col">
+                <div class="flex justify-between items-start mb-auto">
+                    <span class="font-display text-7xl font-bold text-surface-container-highest opacity-50">03</span>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                </div>
+                <div>
+                    <h3 class="font-display text-2xl font-bold text-on-surface mb-3">Schedule pickup</h3>
+                    <p class="font-body text-on-surface-variant text-sm leading-relaxed">After that, you'll hear from a representative to schedule a pickup for your item.</p>
+                </div>
+            </div>
+
+            <!-- Step 04 -->
+            <div class="lg:col-span-1.5 lg:col-span-2 bg-tertiary-container rounded-[1.5rem] p-10 min-h-[320px] flex flex-col">
+                <div class="flex justify-between items-start mb-auto">
+                    <span class="font-display text-7xl font-bold text-primary/40">04</span>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary-container"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+                </div>
+                <div>
+                    <h3 class="font-display text-2xl font-bold text-on-primary mb-3">Get paid</h3>
+                    <p class="font-body text-on-primary/70 text-sm leading-relaxed">Once we validate your quote, you receive funds electronically&mdash;and you're done!</p>
+                </div>
+            </div>
+
+            <!-- Step 05 -->
+            <div class="lg:col-span-1.5 lg:col-span-1 md:col-span-2 lg:col-span-1 xl:col-span-1 bg-primary rounded-[1.5rem] p-10 min-h-[320px] flex flex-col" style="grid-column: span 1 / span 1;">
+                <div class="flex justify-between items-start mb-auto">
+                    <span class="font-display text-7xl font-bold text-primary-container">05</span>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-surface-container-lowest"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <div>
+                    <h3 class="font-display text-2xl font-bold text-on-primary mb-3">We list it</h3>
+                    <p class="font-body text-on-primary/70 text-sm leading-relaxed">We then process and post your item on the marketplace for buyers to purchase.</p>
+                </div>
+            </div>
+            
+            <!-- Force grid adjustments for the 5 elements in lg view to look like the design -->
+            <style>
+                @media (min-width: 1024px) {
+                    .lg\:col-span-1\.5 {
+                        grid-column: span 1;
+                    }
+                    /* Making the last two slightly different widths or distributing 5 columns: 2, 3 on top. 2, 1.5, 1.5 on bottom */
+                    .grid-cols-5 > :nth-child(4),
+                    .grid-cols-5 > :nth-child(5) {
+                         /* We let Tailwind handle it by adjusting col-spans above. Actually it's 2, 3, then 2, 2, 1 but let's make it 2, 2, 1 or 2, 1.5, 1.5. Tailwind grids don't do fractional col spans without custom config. Let's make it grid-cols-6 instead just for the bottom row, or keep it simple. */
+                    }
+                }
+            </style>
+        </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="py-24 px-8 md:px-16 text-center max-w-3xl mx-auto">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-primary mb-10">Ready to give your items a new home?</h2>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <a href="{% url 'home' %}#waitlist" class="bg-primary hover:bg-primary-container text-on-primary font-body font-bold py-4 px-8 rounded-xl transition-all shadow-sm">
+                Join the Waitlist
+            </a>
+            <button disabled class="bg-surface-container border-2 border-outline-variant/30 text-on-surface-variant/50 font-body font-bold py-4 px-8 rounded-xl cursor-not-allowed">
+                Marketplace (Coming Soon)
+            </button>
+        </div>
+        <p class="font-display text-[0.65rem] italic text-on-surface-variant">Join 500+ Baylor students already using S.H.A.R.E.</p>
+    </section>
+{% endblock %}
