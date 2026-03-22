@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,7 +93,10 @@
 <body class="antialiased min-h-screen flex flex-col">
     <!-- Header -->
     <header class="w-full py-6 px-8 md:px-16 flex justify-between items-center bg-surface sticky top-0 z-50">
-        <a href="{% url 'home' %}" class="font-display font-bold text-lg tracking-tightest text-primary">Baylor S.H.A.R.E.</a>
+        <a href="{% url 'home' %}" class="flex items-center gap-3">
+            <img src="{% static 'images/bearLogo.png' %}" alt="Baylor S.H.A.R.E. Logo" class="w-8 h-8 rounded-lg object-cover">
+            <span class="font-display font-bold text-lg tracking-tightest text-primary">Baylor S.H.A.R.E.</span>
+        </a>
         <nav class="flex items-center gap-8 font-body font-medium text-sm">
             <a href="{% url 'process' %}" class="text-on-surface-variant hover:text-primary transition-colors">Process</a>
             <a href="{% url 'home' %}#waitlist" class="bg-primary text-on-primary px-6 py-2.5 rounded-xl hover:bg-primary-container transition-colors shadow-sm">Join Waitlist</a>
