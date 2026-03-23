@@ -151,6 +151,7 @@ STATICFILES_DIRS = [
 
 # WhiteNoise settings
 WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_USE_FINDERS = True
 
 # Media files (Local storage)
 MEDIA_URL = '/media/'
@@ -161,6 +162,6 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
