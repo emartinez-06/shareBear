@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "bash build_files.sh",
   "builds": [
     {
       "src": "shareBear/wsgi.py",
@@ -8,6 +9,10 @@
     }
   ],
   "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "staticfiles/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "shareBear/wsgi.py"
