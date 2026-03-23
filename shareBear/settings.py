@@ -149,6 +149,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'assets',
 ]
 
+# WhiteNoise settings
+WHITENOISE_MANIFEST_STRICT = False
+
 # Media files (Local storage)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

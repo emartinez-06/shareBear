@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class WaitlistEntry(models.Model):
     INTENT_CHOICES = [
         ('BUY', 'Buy'),
@@ -20,17 +21,17 @@ class WaitlistEntry(models.Model):
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     intent = models.CharField(
-        max_length=10, 
-        choices=INTENT_CHOICES, 
+        max_length=10,
+        choices=INTENT_CHOICES,
         default='BOTH',
     )
     year = models.CharField(
-        max_length=10, 
-        choices=YEAR_CHOICES, 
-        blank=True, 
+        max_length=10,
+        choices=YEAR_CHOICES,
+        blank=True,
         null=True,
     )
-    
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
