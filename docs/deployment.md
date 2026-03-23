@@ -43,4 +43,6 @@ Ensure the following environment variables are set in your Vercel project dashbo
 
 ### Static Files
 
-Vercel serves static files using [WhiteNoise](http://whitenoise.evans.io/). No extra configuration is needed for static assets to be served during production.
+The project uses [WhiteNoise](http://whitenoise.evans.io/) to serve static assets directly through the Django application. This ensures reliable delivery on Vercel's serverless environment.
+
+For detailed information on how static images and files are configured for Vercel, see [docs/static-images-vercel.md](static-images-vercel.md).
