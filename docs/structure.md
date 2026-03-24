@@ -8,8 +8,8 @@ The project follows a standard Django project layout with some specific customiz
 - **`.venv/`**: Python virtual environment containing the project's dependencies.
 - **`assets/`**: Project assets such as logos and brand images.
 - **`docs/`**: Documentation files for the project.
-- **`shareBear/`**: The main project configuration folder.
-  - `settings.py`: Django project settings, including Supabase database and storage configuration.
+- **`shareBear/`**: The SHARE Bear project configuration folder.
+  - `settings.py`: SHARE Bear project settings, including Supabase database and storage configuration.
   - `urls.py`: Main URL routing for the project.
   - `wsgi.py` / `asgi.py`: Entry points for web server interfaces.
 - **`templates/`**: Global templates used by the project.

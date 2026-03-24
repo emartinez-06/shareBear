@@ -9,7 +9,7 @@ In the Django templates (e.g., `templates/base.html`), static images are referen
 ```html
 {% load static %}
 ...
-<img src="{% static 'images/bearLogo.png' %}" alt="Baylor SHARE Logo">
+<img src="{% static 'images/bearLogo.png' %}" alt="SHARE Bear Logo">
 ```
 
 The `{% static %}` tag prefixes the path with the value of `STATIC_URL` defined in `shareBear/settings.py`.

@@ -1,5 +1,5 @@
 """
-WSGI config for shareBear project.
+WSGI config for SHARE Bear project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

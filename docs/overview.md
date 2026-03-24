@@ -1,6 +1,6 @@
 # Project Overview
 
-**shareBear** is a Django-based application built to manage a waitlist for students at Baylor University. The project focuses on providing a simple, user-friendly interface for students interested in buying, selling, or both, as they navigate their university experience.
+**SHARE Bear** is a Django-based application built to manage a waitlist for students at Baylor University. The project focuses on providing a simple, user-friendly interface for students interested in buying, selling, or both, as they navigate their university experience.
 
 ## Technology Stack
 

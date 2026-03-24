@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Baylor SHARE{% endblock %}</title>
+    <title>{% block title %}SHARE Bear{% endblock %}</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,8 +94,8 @@
     <!-- Header -->
     <header class="w-full py-6 px-8 md:px-16 flex justify-between items-center bg-surface sticky top-0 z-50">
         <a href="{% url 'home' %}" class="flex items-center gap-3">
-            <img src="{% static 'images/bearLogo.png' %}" alt="Baylor SHARE Logo" class="w-8 h-8 rounded-lg object-cover">
-            <span class="font-display font-bold text-lg tracking-tightest text-primary">Baylor SHARE</span>
+            <img src="{% static 'images/bearLogo.png' %}" alt="SHARE Bear Logo" class="w-8 h-8 rounded-lg object-cover">
+            <span class="font-display font-bold text-lg tracking-tightest text-primary">SHARE Bear</span>
         </a>
         <nav class="flex items-center gap-8 font-body font-medium text-sm">
             <a href="{% url 'process' %}" class="text-on-surface-variant hover:text-primary transition-colors">Process</a>
@@ -110,7 +110,7 @@
     <!-- Footer -->
     <footer class="w-full py-12 px-8 md:px-16 flex flex-col md:flex-row justify-between items-center border-t border-outline-variant/15 mt-20 text-xs font-body text-on-surface-variant">
         <div class="mb-4 md:mb-0">
-            <span class="font-display font-bold text-sm text-primary uppercase tracking-widest block mb-1">Baylor SHARE</span>
+            <span class="font-display font-bold text-sm text-primary uppercase tracking-widest block mb-1">SHARE Bear</span>
             &copy; 2026. Created in collaboration with 180 Degrees Consulting BU and Baylor UIF.
         </div>
         <div class="flex gap-6">
@@ -118,5 +118,7 @@
             <a href="{% url 'terms' %}" class="hover:text-primary transition-colors">Terms</a>
         </div>
     </footer>
+
+    {% block extra_scripts %}{% endblock %}
 </body>
 </html>

@@ -8,7 +8,7 @@ def home(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Thanks for joining the waitlist! We'll be in touch soon.")
-            return redirect('home')
+            return redirect('/#waitlist')
     else:
         form = WaitlistEntryForm()
 

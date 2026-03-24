@@ -1,6 +1,6 @@
-# shareBear Documentation
+# SHARE Bear Documentation
 
-Welcome to the documentation for the **shareBear** project. This project is a Django-based application integrated with Supabase for data storage and PostgreSQL, and it's designed to be deployed on Vercel.
+Welcome to the documentation for the **SHARE Bear** project. This project is a Django-based application integrated with Supabase for data storage and PostgreSQL, and it's designed to be deployed on Vercel.
 
 ## Documentation Index
 
@@ -9,3 +9,4 @@ Welcome to the documentation for the **shareBear** project. This project is a Dj
 - [Supabase Integration](supabase.md): How Supabase is used for the database and storage.
 - [Deployment & Configuration](deployment.md): Instructions for setting up and deploying the project (including environment variables).
 - [Waitlist App](waitlist.md): Documentation specific to the `waitlist` application functionality.
+- [Confetti Animation](confetti.md): Details about the celebratory confetti explosion effect.
