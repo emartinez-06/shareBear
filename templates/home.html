@@ -186,4 +186,55 @@
             </div>
         </div>
     </section>
+
+    {% block extra_scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we are in the success state from real messages
+            const hasMessages = {{ messages|yesno:"true,false" }};
+            
+            if (hasMessages) {
+                // Wait a moment for the scroll to finish and then explode
+                setTimeout(triggerConfetti, 300);
+            }
+        });
+
+        function triggerConfetti() {
+            const duration = 3 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                
+                // Brand Colors: Primary (#003020), Secondary (#feb71a)
+                const colors = ['#003020', '#feb71a', '#154734', '#ffffff'];
+
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                    colors: colors
+                });
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                    colors: colors
+                });
+            }, 250);
+        }
+    </script>
+    {% endblock %}
 {% endblock %}

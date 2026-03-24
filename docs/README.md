@@ -9,3 +9,4 @@ Welcome to the documentation for the **SHARE Bear** project. This project is a D
 - [Supabase Integration](supabase.md): How Supabase is used for the database and storage.
 - [Deployment & Configuration](deployment.md): Instructions for setting up and deploying the project (including environment variables).
 - [Waitlist App](waitlist.md): Documentation specific to the `waitlist` application functionality.
+- [Confetti Animation](confetti.md): Details about the celebratory confetti explosion effect.
