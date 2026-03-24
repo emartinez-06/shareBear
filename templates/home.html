@@ -67,7 +67,7 @@
                     </div>
                 {% endif %}
 
-                <form method="post" action="{% url 'home' %}" class="space-y-8 font-body">
+                <form method="post" action="{% url 'home' %}#waitlist" class="space-y-8 font-body">
                     {% csrf_token %}
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
