@@ -1,6 +1,6 @@
 # Waitlist Application
 
-The `waitlist` app is the central component of the shareBear project, responsible for collecting student interest.
+The `waitlist` app is the central component of the SHARE Bear project, responsible for collecting student interest.
 
 ## Features
 
