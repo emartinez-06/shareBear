@@ -1,6 +1,6 @@
-# shareBear Documentation
+# SHARE Bear Documentation
 
-Welcome to the documentation for the **shareBear** project. This project is a Django-based application integrated with Supabase for data storage and PostgreSQL, and it's designed to be deployed on Vercel.
+Welcome to the documentation for the **SHARE Bear** project. This project is a Django-based application integrated with Supabase for data storage and PostgreSQL, and it's designed to be deployed on Vercel.
 
 ## Documentation Index
 
