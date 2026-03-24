@@ -40,9 +40,10 @@ if not SECRET_KEY:
         )
 
 
-ALLOWED_HOSTS = ['.vercel.app', 'now.sh', 'localhost', '127.0.0.1', 'baylorshare.com', '.baylorshare.com']
+ALLOWED_HOSTS = ['.vercel.app', 'now.sh', 'localhost',
+                 '127.0.0.1', 'sharebear.app', '.sharebear.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://baylorshare.com', 'https://*.baylorshare.com']
+CSRF_TRUSTED_ORIGINS = ['https://sharebear.app', 'https://*.sharebear.app']
 
 
 # Application definition
