@@ -148,9 +148,9 @@
 
     <!-- Value Props Section -->
     <section class="py-24 px-8 md:px-16 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="value-card-grid grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Card 1 -->
-            <div class="bg-primary rounded-[1.5rem] p-10 flex flex-col justify-end min-h-[300px]">
+            <div class="value-card bg-primary rounded-[1.5rem] p-10 flex flex-col justify-end min-h-[300px]">
                 <div class="mb-auto">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-on-primary opacity-80 mb-6">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -162,7 +162,7 @@
             </div>
             
             <!-- Card 2 -->
-            <div class="bg-surface-container rounded-[1.5rem] p-10 flex flex-col justify-end min-h-[300px]">
+            <div class="value-card bg-surface-container rounded-[1.5rem] p-10 flex flex-col justify-end min-h-[300px]">
                 <div class="mb-auto">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary opacity-80 mb-6">
                         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
@@ -175,7 +175,7 @@
             </div>
             
             <!-- Card 3 -->
-            <div class="bg-surface-container rounded-[1.5rem] p-10 flex flex-col justify-end min-h-[300px]">
+            <div class="value-card bg-surface-container rounded-[1.5rem] p-10 flex flex-col justify-end min-h-[300px]">
                 <div class="mb-auto">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary opacity-80 mb-6">
                         <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -187,7 +187,11 @@
         </div>
     </section>
 
-    {% block extra_scripts %}
+    
+{% endblock %}
+
+
+{% block extra_scripts %}
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -198,6 +202,31 @@
                 // Wait a moment for the scroll to finish and then explode
                 setTimeout(triggerConfetti, 300);
             }
+
+            gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from(".value-card", {
+            scrollTrigger: {
+                trigger: ".value-card-grid",
+                start: "top 85%",
+                toggleActions: "play none none none"
+            },
+            y: 60,
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.15
+        });
+
+        document.querySelectorAll(".value-card").forEach(card => {
+            card.addEventListener("mouseenter", () => {
+                gsap.to(card, { scale: 1.04, duration: 0.35, ease: "back.out(2.5)" });
+            });
+            card.addEventListener("mouseleave", () => {
+                gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
+            });
+        });
         });
 
         function triggerConfetti() {
@@ -235,6 +264,7 @@
                 });
             }, 250);
         }
+
+        
     </script>
     {% endblock %}
-{% endblock %}
