@@ -52,7 +52,7 @@ def home(request):
             entry = form.save()
             _send_waitlist_welcome_email(entry)
             messages.success(request, "Thanks for joining the waitlist! We'll be in touch soon.")
-            return redirect('/#waitlist')
+            return redirect('home')
     else:
         form = WaitlistEntryForm()
 
