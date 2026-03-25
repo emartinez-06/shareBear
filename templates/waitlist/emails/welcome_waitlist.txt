@@ -1,0 +1,5 @@
+Hi{% if first_name %} {{ first_name }}{% endif %},
+
+Thanks for joining the Baylor SHARE waitlist. We received your signup and will email you when access opens.
+
+— Baylor SHARE

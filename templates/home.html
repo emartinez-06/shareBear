@@ -70,7 +70,7 @@ Student Marketplace{% endblock %} {% block content %}
 <!-- Waitlist Section -->
 <section
   id="waitlist"
-  class="py-24 px-8 md:px-16 bg-surface-container-low relative"
+  class="scroll-mt-28 py-24 px-8 md:px-16 bg-surface-container-low relative"
 >
   <div
     class="max-w-2xl mx-auto bg-surface-container-lowest rounded-[2rem] p-10 md:p-16 ambient-shadow-lg relative z-10"
@@ -497,11 +497,10 @@ Student Marketplace{% endblock %} {% block content %}
 <script>
           document.addEventListener('DOMContentLoaded', function() {
               // Check if we are in the success state from real messages
-              const hasMessages = {{ messages|yesno:"true,false" }};
+              const hasMessages = {% if messages %}true{% else %}false{% endif %};
 
               if (hasMessages) {
-                  // Wait a moment for the scroll to finish and then explode
-                  setTimeout(triggerConfetti, 300);
+                  setTimeout(triggerConfetti, 350);
               }
 
               gsap.registerPlugin(ScrollTrigger);
@@ -562,7 +561,6 @@ gsap.from(".hero-cta", {
     ease: "power2.out",
     delay: 1.2
 });
-          });
 
           function triggerConfetti() {
               const duration = 3 * 1000;
@@ -599,5 +597,7 @@ gsap.from(".hero-cta", {
                   });
               }, 250);
           }
+
+          });
 </script>
 {% endblock %}
